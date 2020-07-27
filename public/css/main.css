@@ -1,0 +1,98 @@
+/* General Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+input {
+  font-size: 14px;
+}
+
+body {
+  line-height: 1.4;
+  color: #333333;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 16px;
+  color: white;
+  font-family: sans-serif;
+}
+
+label {
+  padding: 6px 12px;
+  border: 0px solid;
+  border-radius: 20px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.34);
+  display: block;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  width: 200px;
+}
+input {
+  border: 0px solid;
+  border-radius: 15px;
+  color: black;
+  padding: 12px;
+  outline: none;
+}
+
+
+button {
+  cursor: pointer;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.40);
+  border: 0px solid;
+  border-radius: 15px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 1.6px;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: white;
+  color: black;
+}
+
+/* button:disabled {
+  cursor: default;
+  background: #7c5cbf94;
+} */
+
+.centered-form {
+  background: url("../img/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered-form__box {
+  background: rgba(0, 0, 0, 0.34);
+  padding: 24px;
+  width: 250px;
+}
+
+.centered-form button {
+  width: 100%;
+}
+
+.centered-form input {
+  margin-bottom: 16px;
+  width: 100%;
+}

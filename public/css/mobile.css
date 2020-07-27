@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.gallery {
+  display: none;
+}
+
+.chat__main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+}
+
+.chat__messages {
+  flex-grow: 1;
+  padding: 24px 24px 0 24px;
+  overflow-y: scroll;
+}
+
+/* Message Styles */
+
+.message {
+  background: #f0f0f0;
+  border: 1px #f7f7f7 solid;
+  border-radius: 23px;
+  margin-bottom: 5px;
+  padding: 10px;
+  padding-left: 15px;
+  width: 90vw;
+}
+
+.message__name {
+  font-weight: 600;
+  font-size: 14px;
+  color: cornflowerblue;
+  margin-right: 8px;
+}
+
+.message__meta {
+  color: #777;
+  font-size: 14px;
+}
+
+.message a {
+  color: #0070cc;
+}
+
+/* Message Composition Styles */
+
+.compose {
+  display: flex;
+  flex-shrink: 0;
+  margin-top: 16px;
+  padding: 24px;
+}
+
+.compose form {
+  display: flex;
+  flex-grow: 1;
+  margin-right: 16px;
+}
+
+.compose input {
+  border: 3px solid #14213d;
+  border-radius: 25px;
+  width: 90%;
+  padding: 12px;
+  margin: 0 16px 0 0;
+  flex-grow: 1;
+}
+
+.compose button {
+  font-size: 25px;
+  background-color: #ffffff00;
+  border: none;
+  cursor: pointer;
+}
+
+/* Chat Sidebar Styles */
+
+.room-title {
+  text-transform: uppercase;
+  text-align: left;
+  font-weight: 400;
+  font-size: 22px;
+  color: #fca311;
+  background: #14213d;
+  padding: 24px;
+}
+
+.list-title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 6px 10px;
+  font-weight: 500;
+  font-size: 18px;
+  color: lightgreen;
+}
+
+.users {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  float: inline-end;
+  list-style-type: none;
+  font-weight: 300;
+  padding: 5px;
+  color: skyblue;
+  text-transform: uppercase;
+}

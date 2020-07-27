@@ -6,6 +6,7 @@ const Filter = require("bad-words");
 const {
   generateMessage,
   generateLocationMessage,
+  generateDataMessage
 } = require("./utils/messages.js");
 const {
   addUser,
@@ -34,22 +35,27 @@ io.on("connection", (socket) => {
 
     socket.join(user.room);
 
-    socket.emit("message", generateMessage('chatBox',"welcome!"));
+    socket.emit("message", generateMessage("chatBox", "welcome!"));
     socket.broadcast
       .to(user.room)
-      .emit("message", generateMessage('chatBox',`${user.username} has joined the chat room.`));
-    io.to(user.room).emit('roomData',{
-        room: user.room,
-        users: getUsersInRoom(user.room)
-
-    })
+      .emit(
+        "message",
+        generateMessage("chatBox", `${user.username} has joined the chat room.`)
+      );
+    io.to(user.room).emit("roomData", {
+      room: user.room,
+      users: getUsersInRoom(user.room),
+    });
     callback();
   });
 
   socket.on("sendMessage", (message, callback) => {
     const user = getUser(socket.id);
     const filter = new Filter();
-    io.to(user.room).emit("message", generateMessage(user.username, filter.clean(message)));
+    io.to(user.room).emit(
+      "message",
+      generateMessage(user.username, filter.clean(message))
+    );
     callback("Delivered");
   });
 
@@ -58,12 +64,12 @@ io.on("connection", (socket) => {
     if (user) {
       io.to(user.room).emit(
         "message",
-        generateMessage('chatBox', `${user.username} has left.`)
+        generateMessage("chatBox", `${user.username} has left.`)
       );
-      io.to(user.room).emit('roomData',{
-          room: user.room,
-          users: getUsersInRoom(user.room)
-      })
+      io.to(user.room).emit("roomData", {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
     }
   });
 
@@ -78,34 +84,16 @@ io.on("connection", (socket) => {
     );
     callback();
   });
-
-  socket.on('typing', (data) => {
-    socket.broadcast.emit('typing', { username: socket.username });
-  })
-
-  socket.on('stop typing', () => {
-    socket.broadcast.emit('stop typing', {
-      username: socket.username
+  
+  socket.on("base64 file", function (msg) {
+    console.log("received base64 file from" + socket.username);
+    io.sockets.emit("base64 file", {
+      username: socket.username == "" ? "Anonymouse" : socket.username,
+      file: msg.file,
+      fileName: msg.fileName,
     });
-  })
-
-
-  //serving images
-
-  socket.on('base64 file', function (msg) {
-    console.log('received base64 file from' + socket.username);
-    //console.log(msg.filename);
-    // socket.broadcast.emit('base64 image', //exclude sender
-    io.sockets.emit('base64 file',  //include sender
-
-      {
-        username: socket.username=='' ? 'Anonymouse' : socket.username,
-        file: msg.file,
-        fileName: msg.fileName
-      }
-
-    );
   });
+  
 });
 
 server.listen(port);

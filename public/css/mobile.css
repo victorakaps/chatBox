@@ -7,6 +7,16 @@
   display: none;
 }
 
+.btn {
+  cursor: pointer;
+  padding: 12px;
+  color: #14213d;
+  border: none;
+  font-size: 20px;
+  transition: background 0.3s ease;
+}
+
+
 .chat__main {
   flex-grow: 1;
   display: flex;
@@ -21,6 +31,12 @@
 }
 
 /* Message Styles */
+input[type="file"] {
+  display: none;
+}
+li{
+  list-style-type: none;
+}
 
 .message {
   background: #f0f0f0;
@@ -30,6 +46,68 @@
   padding: 10px;
   padding-left: 15px;
   width: 90vw;
+}
+
+.image_modal {
+  background: #f0f0f0;
+  border: 1px #f7f7f7 solid;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  width: 70vw;
+}
+.image_modal__image {
+  height: 200px;
+  width: 205px;
+  margin: 5px 20px;
+  border: 1px #f7f7f7 solid;
+  border-radius: 20px;
+}
+
+.image_modal__username {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 10px 0px 15px;
+  color: cornflowerblue;
+}
+.song_modal {
+  background: #f0f0f0;
+  border: 1px #f7f7f7 solid;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  width: 90vw;
+  height: 100px;
+}
+.song_modal__image {
+  width: 80vw;
+  margin: 5px 20px;
+  border-radius: 20px;
+}
+
+.song_modal__username {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 10px 0px 15px;
+  color: cornflowerblue;
+}
+.video_modal {
+  background: #f0f0f0;
+  border: 1px #f7f7f7 solid;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  width: 90vw;
+  height: 220px;
+}
+.video_modal__image {
+  width: 80vw;
+  margin: 5px 20px;
+  border-radius: 20px;
+}
+
+.video_modal__username {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 10px 0px 15px;
+  color: cornflowerblue;
 }
 
 .message__name {
@@ -60,7 +138,6 @@
 .compose form {
   display: flex;
   flex-grow: 1;
-  margin-right: 16px;
 }
 
 .compose input {
@@ -80,15 +157,21 @@
 }
 
 /* Chat Sidebar Styles */
+.chat__sidebar {
+  height: 13vh;
+  color: white;
+  background: #14213d;
+  /* overflow-y: scroll; */
+}
 
 .room-title {
   text-transform: uppercase;
   text-align: left;
   font-weight: 400;
-  font-size: 22px;
+  font-size: 30px;
   color: #fca311;
   background: #14213d;
-  padding: 24px;
+  padding: 30px;
 }
 
 .list-title {

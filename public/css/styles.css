@@ -99,20 +99,28 @@ label {
 } */
 
 button {
+  border-radius: 50%;
+  font-size: 15px;
   cursor: pointer;
-  padding: 12px;
+  padding: 10px;
+  margin: 2px;
   background: #14213d;
   border: none;
   color: #e5e5e5;
-  font-size: 16px;
   transition: background 0.3s ease;
+}
+
+.btn{
+  padding-top: 6px;
+  color: #e5e5e5;
+}
+.btn:hover{
+  color: #fca311;
 }
 
 button:hover {
   color: #fca311;
 }
-
-/* Chat Page Layout */
 
 .chat {
   display: flex;
@@ -182,7 +190,6 @@ button:hover {
 .compose form {
   display: flex;
   flex-grow: 1;
-  margin-right: 16px;
 }
 
 .compose input {
@@ -194,10 +201,7 @@ button:hover {
   flex-grow: 1;
 }
 
-.compose button {
-  border-radius: 50%;
-  font-size: 14px;
-}
+
 
 /* Chat Sidebar Styles */
 

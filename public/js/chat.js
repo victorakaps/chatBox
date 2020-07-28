@@ -5,12 +5,15 @@ const $messageFormInput = $messageForm.querySelector("input");
 const $messageFormButton = $messageForm.querySelector("button");
 const $locationButton = document.querySelector("#location");
 const $messages = document.querySelector("#messages");
+const $image = document.querySelector('.username');
 
 const messageTemplate = document.querySelector("#message-template").innerHTML;
 const locationTemplate = document.querySelector("#location-template").innerHTML;
 const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML;
 
 const {username,room} = Qs.parse(location.search,{ignoreQueryPrefix: true})
+
+let imageCaption;
 
 const autoscroll = () => {
   const $newMessage = $messages.lastElementChild
@@ -33,6 +36,7 @@ const autoscroll = () => {
 
 socket.on("message", (message) => {
   console.log(message);
+  imageCaption = message.username;
   const html = Mustache.render(messageTemplate, {
     username: message.username,
     message: message.text,
@@ -106,3 +110,58 @@ socket.emit('enter',{username, room},(error)=>{
     location.href = "/"
   }
 })
+
+$(function () {
+  var socket = io();
+  $('#uploadfile').bind('change', async function (event) {
+      const imageFile = event.target.files[0];
+      const options = {
+        maxSizeMB: 0.2,
+        maxWidthOrHeight: 600,
+        useWebWorker: true
+      }
+      try {
+        const compressedFile = await imageCompression(imageFile, options);
+        await readThenSendFile(compressedFile);
+      } catch (error) {
+        console.log(error);
+        await readThenSendFile(imageFile);
+      }
+
+  });
+
+  function readThenSendFile(data) {
+    var reader = new FileReader();
+    reader.onload = function (evt) {
+      var msg = {};
+      msg.username = username;
+      msg.file = evt.target.result;
+      msg.fileName = data.name;
+      socket.emit('base64 file', msg);
+    };
+    reader.readAsDataURL(data);
+
+    reader.onprogress = function (currentFile) {
+      if (currentFile.lengthComputable) {
+        var progress = parseInt(((currentFile.loaded / currentFile.total) * 100), 10);
+        $('#percentage').html(progress);
+        console.log(progress);
+      }
+    }
+    reader.onerror = function () {
+      alert("Could not read the file: large file size");
+    };
+  }
+
+  socket.on('base64 file', (data) => {
+    let filetype = data.fileName.split('.').pop();
+    if (filetype == 'mp4' || filetype == 'ogg' || filetype == 'mkv') {
+      $('#messages').append($('<li>').html(`<p class="username">${imageCaption}</p><video class="imgupload" src="${data.file}" height="400" width="400" controls/>`));
+    } else if (filetype == 'mp3' || filetype == 'wav' || filetype == 'aac') {
+      $('#messages').append($('<li>').html(`<p class="username">${imageCaption}</p><audio class="imgupload" src="${data.file}" height="400" width="400" controls/>`));
+    } else {
+      $('#messages').append($('<li>').html(`<p class="username">${imageCaption}</p><img class="imgupload" src="${data.file}" height="200" width="200" onclick="showimg(this)"/>`));
+    }
+  })
+
+});

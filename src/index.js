@@ -25,10 +25,9 @@ app.use(express.static(publicDirectoryPath));
 
 io.on("connection", (socket) => {
   console.log("new connection");
-
+  
   socket.on("enter", ({ username, room }, callback) => {
     const { error, user } = addUser({ id: socket.id, username, room });
-
     if (error) {
       return callback(error);
     }
@@ -86,6 +85,8 @@ io.on("connection", (socket) => {
   });
   
   socket.on("base64 file", function (msg) {
+    const user = getUser(socket.id);
+    console.log(user)
     console.log("received base64 file from" + socket.username);
     io.sockets.emit("base64 file", {
       username: socket.username == "" ? "Anonymouse" : socket.username,

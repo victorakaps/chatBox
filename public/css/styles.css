@@ -71,7 +71,7 @@ input {
 input[type="file"] {
   display: none;
 }
-li{
+li {
   list-style-type: none;
 }
 
@@ -228,73 +228,65 @@ button:hover {
   color: skyblue;
   text-transform: uppercase;
 }
-
-
-/* newly added */
-
-
-.imgupload{
-  border: 8px solid rgb(91, 138, 91);
-  margin-bottom: 10px;
-  margin-left: 20px;
-  margin-top: 10px;
+.image_modal {
+  background: #f0f0f0;
+  border: 1px #f7f7f7 solid;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  width: 250px;
+  height: 250px;
+}
+.image_modal__image {
+  height: 200px;
+  width: 205px;
+  margin: 5px 20px;
+  border: 1px #f7f7f7 solid;
+  border-radius: 20px;
 }
 
-/* Style the Image Used to Trigger the Modal */
-#myImg {
-border-radius: 5px;
-cursor: pointer;
-transition: 0.3s;
-}
-
-#myImg:hover {opacity: 0.7;}
-
-/* The Modal (background) */
-.modal {
-display: none; /* Hidden by default */
-position: fixed; /* Stay in place */
-z-index: 1; /* Sit on top */
-padding-top: 100px; /* Location of the box */
-left: 0;
-top: 0;
-width: 100%; /* Full width */
-height: 100%; /* Full height */
-overflow: auto; /* Enable scroll if needed */
-/*
-background-color: rgb(0,0,0); 
-background-color: rgba(0,0,0,0.9); 
-*/
-}
-
-/* Modal Content (Image) */
-.modal-content {
-margin: auto;
-display: block;
-width: 80%;
-max-width: 700px;
-}
-
-/* Caption of Modal Image (Image Text) - Same Width as the Image */
-#caption {
-margin: auto;
-display: block;
-width: 80%;
-max-width: 700px;
-text-align: center;
-color: #ccc;
-padding: 10px 0;
-height: 150px;
-}
-
-/* Add Animation - Zoom in the Modal */
-.modal-content, #caption {
-animation-name: zoom;
-animation-duration: 0.6s;
-}
-
-.username {
+.image_modal__username {
   font-weight: 600;
   font-size: 14px;
+  padding: 10px 10px 0px 15px;
   color: cornflowerblue;
-  margin-right: 8px;
+}
+.song_modal {
+  background: #f0f0f0;
+  border: 1px #f7f7f7 solid;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  width: 400px;
+  height: 100px;
+}
+.song_modal__image {
+  width: 370px;
+  margin: 5px 20px;
+  border-radius: 20px;
+}
+
+.song_modal__username {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 10px 0px 15px;
+  color: cornflowerblue;
+}
+.video_modal {
+  background: #f0f0f0;
+  border: 1px #f7f7f7 solid;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  width: 400px;
+  height: 250px;
+}
+.video_modal__image {
+  width: 350px;
+  margin: 5px 20px;
+  border-radius: 20px;
+}
+
+.video_modal__username {
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 10px 0px 15px;
+  color: cornflowerblue;
 }

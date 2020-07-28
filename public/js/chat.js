@@ -140,27 +140,16 @@ $(function () {
       socket.emit('base64 file', msg);
     };
     reader.readAsDataURL(data);
-
-    reader.onprogress = function (currentFile) {
-      if (currentFile.lengthComputable) {
-        var progress = parseInt(((currentFile.loaded / currentFile.total) * 100), 10);
-        $('#percentage').html(progress);
-        console.log(progress);
-      }
-    }
-    reader.onerror = function () {
-      alert("Could not read the file: large file size");
-    };
   }
 
   socket.on('base64 file', (data) => {
     let filetype = data.fileName.split('.').pop();
     if (filetype == 'mp4' || filetype == 'ogg' || filetype == 'mkv') {
-      $('#messages').append($('<li>').html(`<p class="username">${imageCaption}</p><video class="imgupload" src="${data.file}" height="400" width="400" controls/>`));
+      $('#messages').append($('<li>').html(`<div class="video_modal"><p class="video_modal__username">${imageCaption}</p><video class="imgupload video_modal__image" src="${data.file}" controls/>`));
     } else if (filetype == 'mp3' || filetype == 'wav' || filetype == 'aac') {
-      $('#messages').append($('<li>').html(`<p class="username">${imageCaption}</p><audio class="imgupload" src="${data.file}" height="400" width="400" controls/>`));
+      $('#messages').append($('<li>').html(`<div class="song_modal"><p class="song_modal__username">${imageCaption}</p><audio class="imgupload song_modal__image" src="${data.file}" controls/>`));
     } else {
-      $('#messages').append($('<li>').html(`<p class="username">${imageCaption}</p><img class="imgupload" src="${data.file}" height="200" width="200" onclick="showimg(this)"/>`));
+      $('#messages').append($('<li>').html(`<div class="image_modal"><p class="image_modal__username">${imageCaption}</p><img class="imgupload image_modal__image" src="${data.file}"></div>`));
     }
   })
 

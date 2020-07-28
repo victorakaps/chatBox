@@ -86,8 +86,6 @@ io.on("connection", (socket) => {
   
   socket.on("base64 file", function (msg) {
     const user = getUser(socket.id);
-    console.log(user)
-    console.log("received base64 file from" + socket.username);
     io.sockets.emit("base64 file", {
       username: socket.username == "" ? "Anonymouse" : socket.username,
       file: msg.file,

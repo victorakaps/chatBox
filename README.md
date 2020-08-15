@@ -1,3 +1,4 @@
-# chatBox-enhancedUI
+# chatBox
+with feature of sharing pics,music,videos,loaction etc.
 
-https://chatbox-victor-node.herokuapp.com
+LIVE DEMO: https://chatapp-victor.herokuapp.com/
